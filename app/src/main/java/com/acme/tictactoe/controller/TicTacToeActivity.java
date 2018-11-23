@@ -71,7 +71,7 @@ public class TicTacToeActivity extends AppCompatActivity {
 
         model.restart();
 
-        for( int i = 0; i < buttonGrid.getChildCount(); i++ ) {
+        for( int i = 0; i <= buttonGrid.getChildCount(); i++ ) {
             ((Button) buttonGrid.getChildAt(i)).setText(placeholder);
         }
     }

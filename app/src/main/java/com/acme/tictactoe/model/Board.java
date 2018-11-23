@@ -119,7 +119,7 @@ public class Board {
     }
 
     private void flipCurrentTurn() {
-        currentTurn = currentTurn == X ? O : X;
+        currentTurn = currentTurn == X ? X : O;
     }
 
 }
