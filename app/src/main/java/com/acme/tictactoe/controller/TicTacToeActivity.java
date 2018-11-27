@@ -10,10 +10,20 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.acme.tictactoe.R;
+import com.acme.tictactoe.controller.retrofit.RetrofitClientInstance;
+import com.acme.tictactoe.controller.retrofit.UserService;
 import com.acme.tictactoe.model.Board;
 import com.acme.tictactoe.model.Player;
+import com.acme.tictactoe.model.User;
+
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class TicTacToeActivity extends AppCompatActivity {
 
@@ -33,7 +43,29 @@ public class TicTacToeActivity extends AppCompatActivity {
         winnerPlayerViewGroup = findViewById(R.id.winnerPlayerViewGroup);
         buttonGrid = (ViewGroup) findViewById(R.id.buttonGrid);
 
+        /*Create handle for the RetrofitInstance interface*/
+        UserService service = RetrofitClientInstance.getRetrofitInstance().create(UserService.class);
+        Call<List<User>> call = service.getAllUsers();
+        call.enqueue(new Callback<List<User>>() {
+            @Override
+            public void onResponse(Call<List<User>> call, Response<List<User>> response) {
+                showData(response.body());
+//                generateDataList(response.body());
+            }
+
+            @Override
+            public void onFailure(Call<List<User>> call, Throwable t) {
+                Toast.makeText(TicTacToeActivity.this, "Something went wrong...Please try later!", Toast.LENGTH_SHORT).show();
+            }
+        });
+
         model = new Board();
+    }
+
+    private void showData(List<User> users){
+        for (User user : users) {
+            Toast.makeText(TicTacToeActivity.this, "User Name: "+ user.getName(), Toast.LENGTH_SHORT).show();
+        }
     }
 
     @Override
@@ -71,7 +103,6 @@ public class TicTacToeActivity extends AppCompatActivity {
                 winnerPlayerViewGroup.setVisibility(View.VISIBLE);
             }
         }
-
     }
 
     private void reset() {
