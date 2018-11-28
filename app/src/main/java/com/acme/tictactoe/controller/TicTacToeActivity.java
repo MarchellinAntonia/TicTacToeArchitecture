@@ -1,5 +1,6 @@
 package com.acme.tictactoe.controller;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -43,22 +44,6 @@ public class TicTacToeActivity extends AppCompatActivity {
         winnerPlayerViewGroup = findViewById(R.id.winnerPlayerViewGroup);
         buttonGrid = (ViewGroup) findViewById(R.id.buttonGrid);
 
-        /*Create handle for the RetrofitInstance interface*/
-        UserService service = RetrofitClientInstance.getRetrofitInstance().create(UserService.class);
-        Call<List<User>> call = service.getAllUsers();
-        call.enqueue(new Callback<List<User>>() {
-            @Override
-            public void onResponse(Call<List<User>> call, Response<List<User>> response) {
-                showData(response.body());
-//                generateDataList(response.body());
-            }
-
-            @Override
-            public void onFailure(Call<List<User>> call, Throwable t) {
-                Toast.makeText(TicTacToeActivity.this, "Something went wrong...Please try later!", Toast.LENGTH_SHORT).show();
-            }
-        });
-
         model = new Board();
     }
 
@@ -101,6 +86,8 @@ public class TicTacToeActivity extends AppCompatActivity {
             if (model.getWinner() != null) {
                 winnerPlayerLabel.setText(playerThatMoved.toString());
                 winnerPlayerViewGroup.setVisibility(View.VISIBLE);
+                Intent i = new Intent(TicTacToeActivity.this, WinnerActivity.class);
+//                i.putExtra("winnerName", strName);
             }
         }
     }
