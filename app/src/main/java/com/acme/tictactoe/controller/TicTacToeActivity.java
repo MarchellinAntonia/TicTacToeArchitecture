@@ -1,8 +1,8 @@
 package com.acme.tictactoe.controller;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -14,17 +14,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.acme.tictactoe.R;
-import com.acme.tictactoe.controller.retrofit.RetrofitClientInstance;
-import com.acme.tictactoe.controller.retrofit.UserService;
 import com.acme.tictactoe.model.Board;
 import com.acme.tictactoe.model.Player;
 import com.acme.tictactoe.model.User;
 
 import java.util.List;
-
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 public class TicTacToeActivity extends AppCompatActivity {
 

@@ -14,14 +14,21 @@
         <activity
             android:name=".controller.IntroActivity"
             android:screenOrientation="portrait">
+            <!--<intent-filter>-->
+                <!--<action android:name="android.intent.action.MAIN" />-->
+
+                <!--<category android:name="android.intent.category.LAUNCHER" />-->
+            <!--</intent-filter>-->
+        </activity>
+        <activity android:name=".controller.WinnerActivity" />
+        <activity android:name=".controller.TicTacToeActivity" />
+        <activity android:name=".controller.ContactActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".controller.WinnerActivity"></activity>
-        <activity android:name=".controller.TicTacToeActivity"></activity>
     </application>
 
 </manifest>
